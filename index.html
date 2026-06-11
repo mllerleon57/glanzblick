@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Glanzblick — Seite im Aufbau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --nachtblau: #163D6E;
+    --koenigsblau: #2568B0;
+    --mittelblau: #4C8AC0;
+    --hellblau: #7FB1DE;
+    --eisblau: #C9DCEC;
+    --eishell: #EDF4FA;
+    --muted: #4C6480;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--nachtblau);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+  }
+
+  /* Top accent bar — matches print collateral */
+  .top-accent {
+    position: fixed; left: 0; right: 0; top: 0;
+    height: 6px; z-index: 5;
+    background: linear-gradient(90deg, var(--nachtblau) 0%, var(--koenigsblau) 100%);
+  }
+
+  /* Subtle background pattern */
+  .bg-orbs {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-orbs::before, .bg-orbs::after {
+    content: ''; position: absolute; border-radius: 50%;
+    filter: blur(70px); opacity: 0.55;
+  }
+  .bg-orbs::before {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, var(--eisblau) 0%, transparent 70%);
+    top: -160px; left: -180px;
+  }
+  .bg-orbs::after {
+    width: 620px; height: 620px;
+    background: radial-gradient(circle, var(--eishell) 0%, transparent 70%);
+    bottom: -220px; right: -200px;
+  }
+
+  /* Page layout */
+  .stage {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 48px 24px;
+  }
+
+  .brand {
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    gap: 28px;
+    margin-bottom: 56px;
+  }
+  .brand .logo {
+    width: 140px; height: auto; display: block; flex: 0 0 auto;
+  }
+  .brand .text {
+    display: flex; flex-direction: column; align-items: center;
+    padding-left: 28px; border-left: 1.5px solid var(--eisblau);
+  }
+  .brand .name {
+    font-weight: 800; font-size: 56px; line-height: 0.95; letter-spacing: -1.2px;
+    color: var(--nachtblau);
+  }
+  .brand .sub {
+    margin-top: 6px;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.32em; color: var(--koenigsblau);
+  }
+  .brand .slogan {
+    margin-top: 6px;
+    font-style: italic; font-weight: 600; font-size: 16px; color: var(--nachtblau);
+  }
+
+  .status {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--eishell);
+    border: 1px solid var(--eisblau);
+    border-radius: 999px;
+    padding: 10px 22px 10px 14px;
+    color: var(--koenigsblau);
+    font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .status .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--koenigsblau);
+    box-shadow: 0 0 0 0 rgba(37, 104, 176, 0.55);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37, 104, 176, 0.55); }
+    70%  { box-shadow: 0 0 0 14px rgba(37, 104, 176, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 104, 176, 0); }
+  }
+
+  .headline {
+    margin-top: 28px;
+    font-weight: 800; font-size: 42px; line-height: 1.1; letter-spacing: -0.6px;
+    color: var(--nachtblau);
+    text-align: center; max-width: 720px;
+  }
+  .lead {
+    margin-top: 16px;
+    font-size: 17px; line-height: 1.55; color: var(--muted);
+    text-align: center; max-width: 560px;
+  }
+
+  .contact {
+    margin-top: 40px;
+    display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
+    font-size: 14px; color: var(--nachtblau); font-weight: 600;
+  }
+  .contact a {
+    color: var(--nachtblau); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px; border-radius: 10px;
+    border: 1px solid var(--eisblau); background: #fff;
+    transition: border-color .15s ease, color .15s ease, transform .15s ease;
+  }
+  .contact a:hover {
+    color: var(--koenigsblau); border-color: var(--mittelblau);
+    transform: translateY(-1px);
+  }
+  .contact svg { width: 16px; height: 16px; color: var(--koenigsblau); }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    padding: 18px 24px;
+    display: flex; justify-content: center; align-items: center; gap: 14px;
+    font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.95) 40%);
+    z-index: 2;
+  }
+  footer .sep { width: 4px; height: 4px; border-radius: 50%; background: var(--eisblau); }
+
+  @media (max-width: 640px) {
+    .brand { gap: 18px; margin-bottom: 40px; }
+    .brand .logo { width: 96px; }
+    .brand .text { padding-left: 18px; }
+    .brand .name { font-size: 38px; }
+    .brand .sub { font-size: 11px; }
+    .brand .slogan { font-size: 13px; }
+    .headline { font-size: 30px; }
+    .lead { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-accent"></div>
+  <div class="bg-orbs"></div>
+
+  <main class="stage">
+    <div class="brand">
+      <img class="logo" src="logo-glanzblick.svg" alt="Glanzblick Logo"/>
+      <div class="text">
+        <div class="name">Glanzblick</div>
+        <div class="sub">GEBÄUDEREINIGUNG</div>
+        <div class="slogan">Sauberkeit mit Auge</div>
+      </div>
+    </div>
+
+    <div class="status">
+      <span class="dot"></span>
+      <span>In Kürze für Sie da</span>
+    </div>
+
+    <h1 class="headline">Unsere Website ist im Aufbau.</h1>
+    <p class="lead">
+      Wir polieren gerade die letzten Ecken. Bald finden Sie hier alle Informationen
+      zu unseren Reinigungsleistungen. Bei Anfragen erreichen Sie uns direkt:
+    </p>
+
+    <div class="contact">
+      <a href="tel:+4915152932444">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        +49 151 52932444
+      </a>
+      <a href="/cdn-cgi/l/email-protection#f990979f96b99e959897839b95909a92d79a9694">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
+        <span class="__cf_email__" data-cfemail="82ebece4edc2e5eee3ecf8e0eeebe1e9ace1edef">[email&#160;protected]</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 Glanzblick · Gebäudereinigung</span>
+    <span class="sep"></span>
+    <span>Peine · Hannover · Braunschweig · Hildesheim · und Umgebung</span>
+  </footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
